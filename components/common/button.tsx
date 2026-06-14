@@ -1,14 +1,19 @@
-import { ReactNode } from "react"
+import React, { ButtonHTMLAttributes, ReactNode } from "react";
 
-interface ButtonProps {
-    children: ReactNode;
-    className?: string
-}
+type ButtonProps = {
+  children: ReactNode;
+  className?: string;
+} & React.ComponentPropsWithoutRef<"button">;
 
-export default function Button({children, className}: ButtonProps) {
-    return (
-        <button className={`w-30 h-10 bg-primary text-black rounded-md ${className}`}>
-            {children}
-        </button>
-    )
+export default function Button(props: ButtonProps) {
+  const { children, className, ...restProps } = props;
+
+  return (
+    <button
+      className={`w-30 h-10 bg-primary text-black rounded-md ${className}`}
+      {...restProps}
+    >
+      {children}
+    </button>
+  );
 }
