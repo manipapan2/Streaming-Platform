@@ -1,5 +1,7 @@
 import { House, Laugh, Logs, User } from "lucide-react";
-import React, { ReactNode } from "react";
+import Image from "next/image";
+import React from "react";
+import UserAvatar from "@/public/images/Avatar.png";
 
 export default function Header() {
   return (
@@ -27,8 +29,16 @@ export default function Header() {
       </nav>
 
       <div>
-        <button className="p-2 bg-amber-700 rounded-full">
-          <User />
+        <button className="w-10 aspect-square bg-gray-400 rounded-full">
+          
+          <Image
+            alt="user avatar"
+            src={UserAvatar.src}
+            width={UserAvatar.width}
+            height={UserAvatar.height}
+            blurDataURL={UserAvatar.blurDataURL}
+            className="rounded-full"
+          />
         </button>
       </div>
     </header>
@@ -38,7 +48,7 @@ export default function Header() {
 interface NavLinkProps {
   href: string;
   text: string;
-  icon: ReactNode;
+  icon: React.ReactNode;
 }
 
 const NavLink = ({ href, text, icon }: NavLinkProps) => {
