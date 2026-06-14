@@ -4,17 +4,17 @@ import Pagination from "@/components/slider/pagination";
 import useEmblaCarousel from "embla-carousel-react";
 import Image from "next/image";
 import { motion } from "motion/react";
-import EmblaCarousel from "embla-carousel";
-import { useEffect, useRef } from "react";
+import { useDotButton } from "../../components/slider/pagination";
+import Autoplay from "embla-carousel-autoplay";
+import HeartButton from "@/components/common/heart-button";
 
 export default function Slider() {
-  const [emblaRef, emblaApi] = useEmblaCarousel({ active: true, loop: true });
-  // const emblaApi = EmblaCarousel(emblaRef, { loop: true })
-
-  useEffect(() => {
-    console.log(emblaApi?.selectedScrollSnap())
-  }, [])
-  
+  const [emblaRef, emblaApi]: any = useEmblaCarousel(
+    { active: true, loop: true },
+    [Autoplay()],
+  );
+  const { selectedIndex, scrollSnaps, onDotButtonClick } =
+    useDotButton(emblaApi);
 
   return (
     <div className="embla max-w-full overflow-hidden relative">
@@ -42,9 +42,18 @@ export default function Slider() {
       </div>
 
       <div className="flex justify-between w-fit m-auto absolute left-1/2 bottom-6 -translate-x-1/2">
-        {[1, 2, 3].map((number: number, index: number) => (
-          <Pagination isActive={index == emblaApi?.selectedScrollSnap()} />
-        ))}
+        <motion.div
+          initial={{ opacity: 0, translateY: 5 }}
+          animate={{ opacity: 1, translateY: 0 }}
+        >
+          {scrollSnaps.map((number: number, index: number) => (
+            <Pagination
+              key={`main pagination ${index}`}
+              onClick={() => onDotButtonClick(index)}
+              isActive={index == emblaApi?.selectedScrollSnap()}
+            />
+          ))}
+        </motion.div>
       </div>
     </div>
   );
@@ -62,11 +71,10 @@ const Slide = ({ title, description, id }: SlideProps) => {
     <div className="embla__slide min-w-full aspect-16/5 flex items-center p-6">
       {/* <Image className="absolute w-full aspect-16/5" src={"#"} /> */}
 
-      {/* Here */}
       <div className="flex flex-col max-w-1/2">
         <motion.div
           initial={{ opacity: 0, translateY: 10 }}
-          whileInView={{
+          animate={{
             opacity: 1,
             translateY: 0,
           }}
@@ -75,19 +83,21 @@ const Slide = ({ title, description, id }: SlideProps) => {
         >
           <span className="text-2xl font-bold">{title}</span>
         </motion.div>
-        <p className="mt-2">{description}</p>
+
+        <motion.div
+          initial={{ translateX: -10, opacity: 0 }}
+          animate={{ translateX: 0, opacity: 1 }}
+        >
+          <p className="mt-2">{description}</p>
+        </motion.div>
+
         <div className="flex mt-5">
-          <motion.div
-            initial={{ scale: 0 }}
-            whileInView={{
-              scale: 1,
-            }}
-            // className="w-fit"
-            // viewport={{ amount: 0 }}
-          >
+          <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }}>
             <Button>Watch now</Button>
           </motion.div>
-          <button>heart</button>
+          <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }}>
+            <HeartButton className="ml-2" />
+          </motion.div>
         </div>
       </div>
     </div>
