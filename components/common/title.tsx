@@ -2,19 +2,19 @@ import { ChevronRight } from "lucide-react";
 import Link from "next/link";
 
 interface TItleProps {
-  text: string;
+  children: React.ReactNode;
   href?: string;
 }
 
-export default function Title({ text, href }: TItleProps) {
+export default function Title({ children, href }: TItleProps) {
   return (
-    <div className="grow flex m-4 font-bold justify-between">
+    <div className="grow flex my-4 font-bold justify-between">
       {href ? ( 
         <Link href={href}>
-          <h3>{text}</h3>
+          <h3>{children}</h3>
         </Link>
       ) : (
-        <h3>{text}</h3>
+        <h3>{children}</h3>
       )}
       <div>
         {href && (
