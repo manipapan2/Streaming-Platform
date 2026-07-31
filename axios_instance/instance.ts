@@ -1,7 +1,7 @@
 import axios from "axios";
 
-const instance = axios.create({
-  baseURL: process.env.PROJECT_ENV == "development" ? "/" : process.env.API_URL,
+const axiosInstance = axios.create({
+  baseURL: 'http://moviesapi.ir',
 });
 
-export default instance;
+export default axiosInstance;
