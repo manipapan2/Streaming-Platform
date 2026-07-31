@@ -17,7 +17,7 @@ export default function Slider() {
     useDotButton(emblaApi);
 
   return (
-    <div className="embla max-w-full overflow-hidden relative">
+    <div className="embla max-w-full overflow-hidden h-full relative">
       <div className="embla__viewport" ref={emblaRef}>
         <div className="embla__container max-w-full flex">
           <Slide
@@ -41,7 +41,7 @@ export default function Slider() {
         </div>
       </div>
 
-      <div className="flex justify-between w-fit m-auto absolute left-1/2 bottom-6 -translate-x-1/2">
+      <div className="flex justify-between w-fit m-auto absolute left-1/2 bottom-2 -translate-x-1/2">
         <motion.div
           initial={{ opacity: 0, translateY: 5 }}
           animate={{ opacity: 1, translateY: 0 }}
@@ -68,10 +68,10 @@ interface SlideProps {
 const Slide = ({ title, description, id }: SlideProps) => {
   // Optimize: remove embla__slide className
   return (
-    <div className="embla__slide min-w-full aspect-16/5 flex items-center p-6">
+    <div className="embla__slide min-w-full aspect-video lg:aspect-16/5 flex items-center p-6 pb-10">
       {/* <Image className="absolute w-full aspect-16/5" src={"#"} /> */}
 
-      <div className="flex flex-col max-w-1/2">
+      <div className="flex flex-col w-full lg:max-w-1/2">
         <motion.div
           initial={{ opacity: 0, translateY: 10 }}
           animate={{
@@ -88,7 +88,7 @@ const Slide = ({ title, description, id }: SlideProps) => {
           initial={{ translateX: -10, opacity: 0 }}
           animate={{ translateX: 0, opacity: 1 }}
         >
-          <p className="mt-2">{description}</p>
+          <p className="mt-2 hidden lg:block">{description}</p>
         </motion.div>
 
         <div className="flex mt-5">
