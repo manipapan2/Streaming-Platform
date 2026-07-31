@@ -5,7 +5,7 @@ import UserAvatar from "@/public/images/Avatar.png";
 
 export default function Header() {
   return (
-    <header className="p-4 flex justify-between absolute top-0 left-0 w-full z-10">
+    <header className="p-4 justify-between hidden lg:flex absolute top-0 left-0 w-full z-10">
       <nav className="w-fit">
         <ul className="list-none flex ">
           <li>
