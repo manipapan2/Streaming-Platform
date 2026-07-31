@@ -1,54 +1,28 @@
-import Image from "next/image";
-import Footer from "./components/footer";
-import Card from "@/components/common/card";
-import Title from "@/components/common/title";
-import SimpleSlider from "@/components/slider/simpleSlider";
-import RecentWatchCard from "./components/recent-watch-card";
-import Header from "./components/header";
-import Slider from "./components/slider";
 
-export default function Home() {
-  return (
-    <div className="bg-background">
-      <div className="w-full aspect-16/7 relative">
-        <Header />
-        <Slider />
-      </div>
-      <main>
-        <Title>Recently watched</Title>
-        <SimpleSlider>
-          <RecentWatchCard
-            name="batman"
-            seasonNumber={1}
-            episodeNumber={2}
-            percentage="42%"
-          />
-          <RecentWatchCard
-            name="batman"
-            seasonNumber={1}
-            episodeNumber={2}
-            percentage="42%"
-          />
-          <RecentWatchCard
-            name="batman"
-            seasonNumber={1}
-            episodeNumber={2}
-            percentage="42%"
-          />
-         
-        </SimpleSlider>
-        <Title>Best</Title>
-        <SimpleSlider>
-          <Card name="test" genre="Action" rate={3.3} />
-          <Card name="test" genre="Action" rate={3.3} />
-          <Card name="test" genre="Action" rate={3.3} />
-          <Card name="test" genre="Action" rate={3.3} />
-          <Card name="test" genre="Action" rate={3.3} />
-          <Card name="test" genre="Action" rate={3.3} />
-        </SimpleSlider>
-      </main>
+import HomePage from "./home-page";
 
-      <Footer />
-    </div>
-  );
+async function getMoviesData() {
+  const API_ENDPOINT = process.env.API_ENDPOINT
+  const getFantasyMovies = await fetch(`${API_ENDPOINT}/api/v1/genres/7/movies?page=1`)
+  const getComedyMovies = await fetch(`${API_ENDPOINT}/api/v1/genres/9/movies?page=1`)
+  const getScifiMovies = await fetch(`${API_ENDPOINT}/api/v1/genres/10/movies?page=1`)
+
+  const fantasyMoviesJsonified = await getFantasyMovies.json()
+  const comedyMoviesJsonified = await getComedyMovies.json()
+  const scifiMoviesJsonified = await getScifiMovies.json()
+
+  
+
+  const res = {fantasy: fantasyMoviesJsonified.data, comedy: comedyMoviesJsonified.data, scifi:scifiMoviesJsonified.data}
+  
+
+  return res
 }
+
+export default async function GetHomePage() {
+  const getData = await getMoviesData()
+
+
+  return <HomePage data={getData}/>
+}
+
