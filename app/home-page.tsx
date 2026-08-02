@@ -42,14 +42,14 @@ export default function HomePage({data}: {data: {[key: string]: MoviesSearchedBy
         <LinkTitle href="/movies?genre=scifi">Sci-FI</LinkTitle>
         <SimpleSlider>
           {data && Object.keys(data.scifi).map((key) => (
-          <Card key={`${data.scifi[key].title} scifi card`} imageURL={data.scifi[key].poster} id={data.scifi[key].id} name={data.scifi[key].title} rate={data.scifi[key].imdb_rating} genre={data.scifi[key].genres} country={data.scifi[key].country} year={data.scifi[key].year}  />
+          <Card key={`${data.scifi[key].title} scifi card`} imageURL={data.scifi[key].poster} id={data.scifi[key].id} name={data.scifi[key].title} rate={data.scifi[key].imdb_rating} genre={data.scifi[key].genres} year={data.scifi[key].year}  />
           ))}
         </SimpleSlider>
 
         <LinkTitle href="/movies?genre=comedy">Sci-FI</LinkTitle>
         <SimpleSlider>
           {data && Object.keys(data.comedy).map((key) => (
-          <Card key={`${data.comedy[key].title} comedy card`} imageURL={data.comedy[key].poster} id={data.comedy[key].id} name={data.comedy[key].title} rate={data.comedy[key].imdb_rating} genre={data.comedy[key].genres} country={data.scifi[key].country} year={data.comedy[key].year}  />
+          <Card key={`${data.comedy[key].title} comedy card`} imageURL={data.comedy[key].poster} id={data.comedy[key].id} name={data.comedy[key].title} rate={data.comedy[key].imdb_rating} genre={data.comedy[key].genres} year={data.comedy[key].year}  />
           ))}
         </SimpleSlider>
       </main>

@@ -9,7 +9,6 @@ interface CardProps {
   rate: string | number;
   genre: string[];
   year: string;
-  country: string;
 }
 
 export default function Card({
@@ -19,7 +18,6 @@ export default function Card({
   rate,
   genre,
   year,
-  country,
 }: CardProps) {
   return (
     <Link href={`/movies/${id}`} className="mx-2 cursor-pointer">
