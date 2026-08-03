@@ -25,7 +25,7 @@ export default function Card({
         <Image
           alt={`${name} poster`}
           src={imageURL}
-          layout="fill"
+          fill
           className="w-full h-full rounded-md"
         />
         <div className="group-hover:bg-black/70 absolute w-full flex flex-col justify-center p-2 rounded-md h-full bg-black/0 transition-[50ms]">
@@ -48,8 +48,8 @@ export default function Card({
       <div className="flex gap-2 flex-col">
         <span className="mt-4 line-clamp-1">{name}</span>
         <span className="opacity-50 text-sm max-w-full line-clamp-1 text-foreground">
-          {genre.map((text) => (
-            <span className="group">
+          {genre.map((text, index) => (
+            <span key={index} className="group">
               {text}
               <span className="group-last:hidden">, </span>
             </span>
