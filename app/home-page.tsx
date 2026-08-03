@@ -42,28 +42,31 @@ export default function HomePage({
             percentage="42%"
           />
         </SimpleSlider>
-        <LinkTitle href="/movies?genre=scifi">Sci-FI</LinkTitle>
-        <SimpleSlider>
-          {data &&
-            Object.keys(data.scifi).map((key) => (
-              <Card
-                key={`${data.scifi[key].title} scifi card`}
-                imageURL={data.scifi[key].poster}
-                id={data.scifi[key].id}
-                name={data.scifi[key].title}
-                rate={data.scifi[key].imdb_rating}
-                genre={data.scifi[key].genres}
-                year={data.scifi[key].year}
-              />
-            ))}
-        </SimpleSlider>
+        <div className="gap-4 flex flex-col mt-5">
+          {data?.scifi && (
+            <div>
+              <LinkTitle href="/movies?genre=scifi">Sci-FI</LinkTitle>
+              <SimpleSlider>
+                {Object.keys(data.scifi).map((key) => (
+                  <Card
+                    key={`${data.scifi[key].title} scifi card`}
+                    imageURL={data.scifi[key].poster}
+                    id={data.scifi[key].id}
+                    name={data.scifi[key].title}
+                    rate={data.scifi[key].imdb_rating}
+                    genre={data.scifi[key].genres}
+                    year={data.scifi[key].year}
+                  />
+                ))}
+              </SimpleSlider>
+            </div>
+          )}
 
-        {data?.comedy && (
-          <>
-            <LinkTitle href="/movies?genre=comedy">Comedy</LinkTitle>
-            <SimpleSlider>
-              {data &&
-                Object.keys(data.comedy).map((key) => (
+          {data?.comedy && (
+            <div>
+              <LinkTitle href="/movies?genre=comedy">Comedy</LinkTitle>
+              <SimpleSlider>
+                {Object.keys(data.comedy).map((key) => (
                   <Card
                     key={`${data.comedy[key].title} comedy card`}
                     imageURL={data.comedy[key].poster}
@@ -74,16 +77,15 @@ export default function HomePage({
                     year={data.comedy[key].year}
                   />
                 ))}
-            </SimpleSlider>
-          </>
-        )}
+              </SimpleSlider>
+            </div>
+          )}
 
-        {data?.fantasy && (
-          <>
-            <LinkTitle href="/movies?genre=fantasy">Fantasy</LinkTitle>
-            <SimpleSlider>
-              {data &&
-                Object.keys(data.fantasy).map((key) => (
+          {data?.fantasy && (
+            <div>
+              <LinkTitle href="/movies?genre=fantasy">Fantasy</LinkTitle>
+              <SimpleSlider>
+                {Object.keys(data.fantasy).map((key) => (
                   <Card
                     key={`${data.fantasy[key].title} fantasy card`}
                     imageURL={data.fantasy[key].poster}
@@ -94,9 +96,10 @@ export default function HomePage({
                     year={data.fantasy[key].year}
                   />
                 ))}
-            </SimpleSlider>
-          </>
-        )}
+              </SimpleSlider>
+            </div>
+          )}
+        </div>
       </main>
 
       <Footer />
