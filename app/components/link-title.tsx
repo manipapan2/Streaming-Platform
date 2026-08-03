@@ -11,7 +11,7 @@ export default function LinkTitle({ children, href }: LinkTItleProps) {
   return (
     <div className="grow flex m-4 justify-between">
       <Link href={href}>
-          <Title>{children}</Title>
+          <span className="flex text-2xl font-bold ">{children}</span>
         </Link>
         <Link
             href={href}
