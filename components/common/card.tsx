@@ -48,7 +48,7 @@ export default function Card({
       <div className="flex gap-2 flex-col">
         <span className="mt-4 line-clamp-1">{name}</span>
         <span className="opacity-50 text-sm max-w-full line-clamp-1 text-foreground">
-          {genre.map((text, index) => (
+          {genre?.map((text, index) => (
             <span key={index} className="group">
               {text}
               <span className="group-last:hidden">, </span>
