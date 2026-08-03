@@ -4,5 +4,5 @@ interface TItleProps {
 }
 
 export default function Title({ children, className }: TItleProps) {
-  return <h2 className={`my-4 font-bold ${className}`}>{children}</h2>;
+  return <span className={`mb-4 flex text-2xl font-bold ${className}`}>{children}</span>;
 }
