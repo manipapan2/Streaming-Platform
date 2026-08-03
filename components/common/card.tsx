@@ -23,10 +23,10 @@ export default function Card({
     <Link href={`/movies/${id}`} className="mx-2 cursor-pointer">
       <div className="aspect-9/14 group rounded-md bg-gray-600 w-40 relative">
         <Image
-          alt={`${name} poster`}
+          alt={`${name} image`}
           src={imageURL}
           fill
-          className="w-full h-full rounded-md"
+          className="w-full h-full object-cover rounded-md"
         />
         <div className="group-hover:bg-black/70 absolute w-full flex flex-col justify-center p-2 rounded-md h-full bg-black/0 transition-[50ms]">
         <div className="mx-auto mt-auto p-3 bg-accent rounded-full  scale-0 group-hover:scale-100 transition-[50ms]"><Play size={16}/></div>
