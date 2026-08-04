@@ -10,7 +10,7 @@ export default function Button(props: ButtonProps) {
 
   return (
     <button
-      className={`w-30 h-10 bg-primary text-black rounded-md hover:bg-transparent hover:text-foreground outline-2 outline-primary select-none transition-all ${restProps.disabled && "pointer-events-none! opacity-30!"} ${className}`}
+      className={`w-30 h-10 bg-primary flex justify-center items-center text-black rounded-md hover:bg-transparent hover:text-foreground outline-2 outline-primary select-none transition-all ${restProps.disabled && "pointer-events-none! opacity-30"} ${className}`}
       {...restProps}
     >
       {children}
