@@ -5,7 +5,7 @@ import Title from "@/components/common/title";
 import SimpleSlider from "@/components/slider/simpleSlider";
 import RecentWatchCard from "./components/recent-watch-card";
 import Header from "./components/header";
-import Slider from "./components/slider";
+import Slider, { Slide } from "./components/slider";
 import LinkTitle from "./components/link-title";
 import { MoviesSearchedByGenres } from "@/types/movie";
 
@@ -18,9 +18,23 @@ export default function HomePage({
     <div className="bg-background">
       <div className="w-full relative">
         <Header />
-        <Slider />
+        {data.sliderMovies && (
+          <Slider>
+            {Object.keys(data.sliderMovies).map((key) => (
+              <Slide
+              id={data.sliderMovies[key].id}
+                key={`${data.sliderMovies[key].title} slider card`}
+                title={data.sliderMovies[key].title}
+                imageURL={data.sliderMovies[key].images[0]}
+                description="
+          Lorem ipsum dolor ipit maxime inventore dolorum, architecto quod amet, voluptas eveniet, officiis perspiciatis
+          "
+              />
+            ))}
+          </Slider>
+        )}
       </div>
-      <main>
+      <main className="mt-5">
         <Title>Recently watched</Title>
         <SimpleSlider>
           <RecentWatchCard
