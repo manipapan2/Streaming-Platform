@@ -50,6 +50,7 @@ export default function FixedSlider({
           {Array.isArray(images) &&
             images.map((url) => (
               <div
+              key={`fixed image slider ${url}`}
               onClick={e => e.stopPropagation()}
                 className={`min-w-5/6 lg:min-w-2/3 aspect-video rounded-md ${isHidden ? "pointer-events-none!" : ""}`}
               >
