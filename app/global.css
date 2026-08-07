@@ -57,7 +57,7 @@
   --foreground: oklch(100% 0.00011 271.152);
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(0.205 0 0);
+  --popover: var(--accent);
   --primary-foreground: oklch(0.205 0 0);
   --secondary: lab(26 -0.31 -22.36);
   --secondary-foreground: oklch(0.985 0 0);
