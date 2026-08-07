@@ -12,8 +12,8 @@ interface ReviewProps {
   image?: StaticImageData;
   username: string;
   text: string;
-  movieId?: string;
-  id?: string;
+  movieId?: number | string;
+  id?: number | string;
 }
 
 export default function Review({
