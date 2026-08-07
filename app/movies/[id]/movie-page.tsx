@@ -40,7 +40,7 @@ export default function MoviePage({ movieData }: { movieData: MovieProps }) {
   });
 
   return (
-    <div className="flex flex-col gap-5">
+    <div className="flex flex-col gap-7">
       <div className="relative w-full -z-10 aspect-square flex">
         <Image
           alt={`${movieData.title} image`}
@@ -81,36 +81,40 @@ export default function MoviePage({ movieData }: { movieData: MovieProps }) {
         <p>{movieData.plot}</p>
       </div>
 
-      <Title>Cast</Title>
-      <SimpleSlider>
-        <Cast imageUrl="" position="Director" name={movieData.director} />
-        {movieData.actors.split(", ").map((name: string) => (
-          <Cast key={name} imageUrl="" position="Actor" name={name} />
-        ))}
-      </SimpleSlider>
+      <div>
+        <Title className="ml-4">Cast</Title>
+        <SimpleSlider>
+          <Cast imageUrl="" position="Director" name={movieData.director} />
+          {movieData.actors.split(", ").map((name: string) => (
+            <Cast key={name} imageUrl="" position="Actor" name={name} />
+          ))}
+        </SimpleSlider>
+      </div>
 
       {movieData.images.length > 0 && (
         <>
-          <Title>Pictures</Title>
-          <SimpleSlider>
-            {movieData.images.map((url: string, index: number) => (
-              <div
-                key={`image slider ${url}`}
-                onClick={() => {
-                  setSelectedSliderIndex(index);
-                  setIsFixedSliderHidden(false);
-                }}
-                className="aspect-video min-w-2/3 lg:min-w-sm relative m-3 cursor-pointer"
-              >
-                <Image
-                  alt=""
-                  src={url}
-                  fill
-                  className="object-cover rounded-md"
-                />
-              </div>
-            ))}
-          </SimpleSlider>
+          <div>
+            <Title className="ml-4">Pictures</Title>
+            <SimpleSlider>
+              {movieData.images.map((url: string, index: number) => (
+                <div
+                  key={`image slider ${url}`}
+                  onClick={() => {
+                    setSelectedSliderIndex(index);
+                    setIsFixedSliderHidden(false);
+                  }}
+                  className="aspect-video min-w-2/3 lg:min-w-sm relative m-3 cursor-pointer"
+                >
+                  <Image
+                    alt=""
+                    src={url}
+                    fill
+                    className="object-cover rounded-md"
+                  />
+                </div>
+              ))}
+            </SimpleSlider>
+          </div>
 
           <FixedSlider
             selectedSlideIndex={selectedSliderIndex}
@@ -122,7 +126,7 @@ export default function MoviePage({ movieData }: { movieData: MovieProps }) {
       )}
 
       <div className="m-2 flex flex-col">
-        <Title>Reviews</Title>
+        <Title className="ml-2">Reviews</Title>
         <div className="gap-5 flex flex-col">
           <Controller
             name="review"
@@ -170,18 +174,12 @@ export default function MoviePage({ movieData }: { movieData: MovieProps }) {
                   id={id}
                 />
               ))}
-          <Review
-            username="Alex"
-            text="This is peak!"
-          />
+          <Review username="Alex" text="This is peak!" />
           <Review
             username="Jimmy"
             text="I guess I just wasted my time one this"
           />
-          <Review
-            username="William"
-            text="I watched it over and over"
-          />
+          <Review username="William" text="I watched it over and over" />
         </div>
       </div>
     </div>
