@@ -18,9 +18,9 @@ export default function Slider({ children }: { children: React.ReactNode }) {
     useDotButton(emblaApi);
 
   return (
-    <div className="embla max-w-full overflow-hidden h-full relative">
-      <div className="embla__viewport" ref={emblaRef}>
-        <div className="embla__container max-w-full flex">{children}</div>
+    <div className="max-w-full overflow-hidden h-full relative">
+      <div ref={emblaRef}>
+        <div className="max-w-full flex">{children}</div>
       </div>
 
       <div className="flex justify-between w-fit m-auto absolute left-1/2 bottom-2 -translate-x-1/2">
