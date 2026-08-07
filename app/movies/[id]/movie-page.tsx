@@ -17,6 +17,7 @@ import * as z from "zod";
 import { Field, FieldError } from "@/components/ui/field";
 import { useReviews } from "@/hooks/reviews";
 import myImage from "@/public/images/Avatar.png";
+import { movieDurationConvertor } from "@/utils/movie-duration-convertor";
 
 const reviewFromSchema = z.object({
   review: z
@@ -53,7 +54,12 @@ export default function MoviePage({ movieData }: { movieData: MovieProps }) {
         <h1 className="mb-2 text-2xl">{movieData.title}</h1>
 
         <div className="mb-3">
-          <span className="text-lg">⭐ 4.4 | PG 12 | ⏱️ 1h 20m</span>
+          <span className="text-lg">
+            ⭐ {movieData.imdb_rating} | {movieData.rated} | ⏱️{" "}
+            {movieDurationConvertor(
+              parseInt(movieData.runtime.split(" min")[0]),
+            )}
+          </span>
         </div>
 
         <div className="flex gap-2 flex-wrap">
