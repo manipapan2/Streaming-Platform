@@ -42,8 +42,8 @@ export default function MoviePage({ movieData }: { movieData: MovieProps }) {
 
   return (
     <div className="flex flex-col gap-7">
-      <div className="lg:flex lg:justify-around lg:p-4">
-        <div className="relative w-full -z-10 aspect-square flex lg:aspect-9/14 lg:w-60 lg:min-w-60 lg:rounded-md">
+      <div className="md:flex md:justify-around md:p-4">
+        <div className="relative w-full -z-10 aspect-square flex md:aspect-9/14 md:w-60 md:min-w-60 md:rounded-md">
         <Image
           alt={`${movieData.title} image`}
           src={movieData.poster}
@@ -51,7 +51,7 @@ export default function MoviePage({ movieData }: { movieData: MovieProps }) {
           className="object-cover object-top rounded-md"
         />
       </div>
-      <div className="-mt-40 p-3 bg-linear-0 from-background from-20% to-transparent lg:mt-0 lg:w-full lg:ml-10 lg:flex lg:flex-col lg:justify-end">
+      <div className="-mt-40 p-3 bg-linear-0 from-background from-20% to-transparent md:mt-0 md:w-full md:ml-10 md:flex md:flex-col md:justify-end">
         <h1 className="mb-2 text-2xl">{movieData.title}</h1>
 
         <div className="mb-3">
