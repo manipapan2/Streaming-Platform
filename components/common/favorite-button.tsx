@@ -26,7 +26,8 @@ export default function AddFavorite({ movie, className }: props) {
           className="text-black"
         />
       </i>
-      Add to favorites
+      {favoritedMovies[movie.id] ? 'Remove from favorites' : 'Add to favorites'}
+      
     </button>
   );
 }
