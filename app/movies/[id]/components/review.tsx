@@ -70,7 +70,7 @@ export default function Review({
                   className="text-red-500"
                   onClick={() => setIsDialogOpen(true)}
                 >
-                  <Trash2 /> Remove
+                  <Trash2 /> Delete
                 </DropdownMenuItem>
                 {/* </DropdownMenuGroup> */}
               </DropdownMenuContent>
