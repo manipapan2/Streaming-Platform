@@ -1,3 +1,12 @@
+import Button from "@/components/common/button";
+import {
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,} from "@/components/ui/dialog";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -7,6 +16,7 @@ import {
 import { useReviews } from "@/hooks/reviews";
 import { EllipsisVertical, Trash2, User } from "lucide-react";
 import Image, { StaticImageData } from "next/image";
+import { useState } from "react";
 
 interface ReviewProps {
   image?: StaticImageData;
@@ -23,6 +33,7 @@ export default function Review({
   movieId,
   id,
 }: ReviewProps) {
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
   const removeReview = useReviews((state) => state.removeReview);
 
   return (
@@ -46,23 +57,56 @@ export default function Review({
         </div>
 
         {movieId && id && (
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <i>
-                <EllipsisVertical />
-              </i>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent>
-              {/* <DropdownMenuGroup> */}
-              <DropdownMenuItem
-                className="text-red-500"
-                onClick={() => removeReview(movieId, id)}
-              >
-                <Trash2 /> Remove
-              </DropdownMenuItem>
-              {/* </DropdownMenuGroup> */}
-            </DropdownMenuContent>
-          </DropdownMenu>
+          <>
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <i>
+                  <EllipsisVertical />
+                </i>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent>
+                {/* <DropdownMenuGroup> */}
+                <DropdownMenuItem
+                  className="text-red-500"
+                  onClick={() => setIsDialogOpen(true)}
+                >
+                  <Trash2 /> Remove
+                </DropdownMenuItem>
+                {/* </DropdownMenuGroup> */}
+              </DropdownMenuContent>
+            </DropdownMenu>
+
+            <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
+              <DialogContent className="sm:max-w-sm">
+                <DialogHeader>
+                  <DialogTitle>Remove review</DialogTitle>
+                  <DialogDescription>
+                    Are you sure you want to delete your review?
+                  </DialogDescription>
+                </DialogHeader>
+
+                <DialogFooter>
+                  <DialogClose asChild>
+                    <Button
+                      onClick={() => setIsDialogOpen(false)}
+                      className="w-fit bg-transparent border-gray-100 text-gray-100 hover:text-gray-100"
+                    >
+                      Cancel
+                    </Button>
+                  </DialogClose>
+                  <Button
+                    onClick={() => {
+                      removeReview(movieId, id);
+                      setIsDialogOpen(false);
+                    }}
+                    className="bg-red-500 hover:bg-red-500 hover:text-black border-red-500"
+                  >
+                    Delete
+                  </Button>
+                </DialogFooter>
+              </DialogContent>
+            </Dialog>
+          </>
         )}
       </div>
       {/* <p className="ml-12">{text}</p> */}
